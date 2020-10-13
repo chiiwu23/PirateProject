@@ -5,8 +5,7 @@ using namespace std;
 
 
 //Constants (additional constants allowed)
-const string PROJ2_SHIPS= "proj2_ships.txt"; //Ship file constant
-const string PROJ2_PIRATES= "proj2_pirates.txt"; //Pirate file constant
+
 
 
   /* Name: Game() Default Constructor
@@ -17,7 +16,7 @@ const string PROJ2_PIRATES= "proj2_pirates.txt"; //Pirate file constant
   // Preconditions - None
   // Postconditions - m_allPirates and m_ships are populated
   */ 
-Game::Game(); //Default Constructor
+Game::Game() {} //Default Constructor
 
   // Name: LoadShips
   // Desc - Loads each type of ship into m_ships from file (Do not use EOF)
@@ -126,14 +125,14 @@ void Game::LoadPirates(){
         int x = 0; //Counter for splicting
         int arryCounter = 0;
         string elementPirates;
-        while (getline(inputStream,elementPirates, ",")){
+        while (getline(inputStream,elementPirates, ',')){
             if (x == 0) {
                 pirateName = elementPirates;
 
             }
 
             if (x == 1){
-                pirateRating = elementPirates;
+                pirateRating = stoi(elementPirates);
             }
 
             if (x == 2) {
@@ -143,8 +142,8 @@ void Game::LoadPirates(){
             if (x == 3) {
                 pirateDesc = elementPirates;
                 Pirate pirate = Pirate(pirateName,pirateRating, pirateOrigin, pirateDesc);
-                m_allPirates[arrayCounter] = pirate;
-                arrayCounter ++;
+                m_allPirates[arryCounter] = pirate;
+                arryCounter ++;
                 x = 0; 
             }
             x++; 
@@ -154,10 +153,10 @@ void Game::LoadPirates(){
         }
         for (int y = 0; y < arryCounter; y++)
         {
-            cout << "Name: " << m_allPirate[y].m_pirateName << endl;
-            cout << "Rating: " << m_allPirates[y].m_pirateRating<< endl;
-            cout << "Origin: " << m_allPirates[y].m_pirateOrigin << endl;
-            cout << "Desc: " << m_allPirates[y].m_pirateDesc<< endl;
+            cout << "Name: " << m_allPirates[y].GetName() << endl;
+            cout << "Rating: " << m_allPirates[y].GetRating()<< endl;
+            cout << "Origin: " << m_allPirates[y].GetOrigin() << endl;
+            cout << "Desc: " << m_allPirates[y].GetDesc()<< endl;
             cout << "___________________________________" << endl;
             cout << endl;
 
@@ -174,17 +173,17 @@ void Game::LoadPirates(){
   //         calling the main menu 
   // Preconditions - Player (Pirate) is placed in game
   // Postconditions - Continually checks to see if player has entered 4 (retires)
-void Game::StartGame();
+void Game::StartGame() {}
   // Name: MainMenu()
   // Desc - Displays and manages menu. 
   // Preconditions - Player has a Pirate
   // Postconditions - Returns number including exit
-int Game::MainMenu();
+int Game::MainMenu() { return 0; }
   // Name: SearchTreasure()
   // Desc - Attempts to search for ships and allows user to either battle or attempt to flee
   // Preconditions - Pirates loaded
   // Postconditions - Identifies enemy pirate to fight
-void Game::SearchTreasure();
+void Game::SearchTreasure() {}
 
 //*
   // Name: RequestShip()
@@ -198,14 +197,3 @@ void Game::SearchTreasure();
   // Desc - Title for Game (Do not edit)
   // Preconditions - None
   // Postconditions - None
-void Game::GameTitle(){
-    cout << "******************************************************************" << endl;
-    cout << " PPPPPP   IIIIIII  RRRRRR    AAAAA   TTTTTTT  EEEEEEE  SSSSSSS  !!" << endl;
-    cout << " P     P     I     R     R  A     A     T     E        S        !!" << endl;
-    cout << " P     P     I     R     R  A     A     T     E        S        !!" << endl;
-    cout << " PPPPPP      I     RRRRRR   AAAAAAA     T     EEEEEEE  SSSSSSS  !!" << endl;
-    cout << " P           I     RR       A     A     T     E              S  !!" << endl;
-    cout << " P           I     R  R     A     A     T     E              S    " << endl;
-    cout << " P        IIIIIII  R    R   A     A     T     EEEEEEE  SSSSSSS  !!" << endl;
-    cout << "******************************************************************" << endl;
-  }
