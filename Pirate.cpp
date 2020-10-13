@@ -77,7 +77,7 @@ string Pirate::GetDesc() {
 // Postconditions - Updates m_curShip
 void Pirate::SetCurShip(Ship curShip) {
 	m_curShip = curShip;
-	
+
 }
 
 // Name: CalcTreasure
@@ -88,6 +88,7 @@ void Pirate::SetCurShip(Ship curShip) {
 void Pirate::CalcTreasure(Ship enemyShip) {
 	int calcTreasure = (enemyShip.m_cannon + enemyShip.m_toughness + enemyShip.m_speed) / 3;
 	m_pirateCargo += calcTreasure;
+	cout << "You have gained " << calcTreasure << " pieces of cargo" << endl;
 }
 
 
@@ -105,12 +106,13 @@ void Pirate::CalcTreasure(Ship enemyShip) {
 // Postconditions - Either user pirate wins or enemy pirate wins
 
 void Pirate::Battle(Pirate enemyPirate, Ship enemyShip) {
-	if (m_curShip.m_curToughness == 0) {
+	if (m_curShip.m_curToughness <= 0) {
 		cout << "Unable to Battle, Ships Toughness is " << m_curShip.m_curToughness << endl;
 	}
 	else {
+		m_pirateDays++;
 		cout << "A naval battle of the ages commences between " << m_pirateName << " and " << enemyPirate.GetName() << endl;
-		while (m_curShip.m_curToughness >= 1 || enemyShip.m_curToughness >= 1) {
+		while (m_curShip.m_curToughness >= 1 && enemyShip.m_curToughness >= 1) {
 			//current ship fires 
 			cout << m_pirateName << " fires " << m_curShip.m_cannon << " cannons" << endl;
 			int hitsMade = (m_curShip.m_cannon * m_pirateRating) / 100;
@@ -126,8 +128,8 @@ void Pirate::Battle(Pirate enemyPirate, Ship enemyShip) {
 				cout << "You lost!" << endl;
 			}
 			else if (enemyShip.m_curToughness < 1) {
-				CalcTreasure(enemyShip);
 				cout << "You Win!" << endl;
+				CalcTreasure(enemyShip);
 			}
 
 		}
@@ -146,7 +148,7 @@ void Pirate::RepairShip() {
 	m_curShip.m_curToughness = m_curShip.m_toughness;
 	cout << "It takes " << damageShip << " days to fix the ship" << endl;
 	m_pirateDays = m_pirateDays + damageShip;
-	
+
 }
 
 // Name: Flee(pirate, ship)
@@ -156,8 +158,15 @@ void Pirate::RepairShip() {
 // Postconditions - Returns to menu or Battle occurs
 
 void Pirate::Flee(Pirate enemyPirate, Ship enemyShip) {
+	m_pirateDays++;
 	if (m_curShip.m_speed < enemyShip.m_speed) {
 		Battle(enemyPirate, enemyShip);
+	}
+	else
+	{
+
+		cout << "Flee Successful" << endl;
+		cout << m_pirateName << " lives to fight another day!" << endl;
 	}
 }
 

@@ -158,9 +158,9 @@ void Game::LoadPirates() {
 			}
 
 			if (x == 3) {
-				
+
 				//Cut off the name that was inherited from the inputStream
-				if (arryCounter != MAX_PIRATES-1)
+				if (arryCounter != MAX_PIRATES - 1)
 				{
 					int y = 0;
 					string descBuilder = "";
@@ -177,8 +177,8 @@ void Game::LoadPirates() {
 				{
 					pirateDesc = elementPirates;
 				}
-				
-				
+
+
 				Pirate pirate = Pirate(pirateName, pirateRating, pirateOrigin, pirateDesc);
 				m_allPirates[arryCounter] = pirate;
 				arryCounter++;
@@ -193,7 +193,7 @@ void Game::LoadPirates() {
 					{
 						strBuilder = strBuilder + charElement;
 						charElement = elementPirates[++y];
-						
+
 					}
 					reverse(strBuilder.begin(), strBuilder.end());
 					pirateName = strBuilder;
@@ -210,7 +210,7 @@ void Game::LoadPirates() {
 			cout << "Desc: " << m_allPirates[y].GetDesc() << endl;
 			cout << "___________________________________" << endl;
 			cout << endl;
-			
+
 		}
 		*/
 		cout << arryCounter << " pirates loaded." << endl;
@@ -275,7 +275,7 @@ int Game::MainMenu() {
 		cout << "3. See Score" << endl;
 		cout << "4. Retire" << endl;
 		cin >> userChoice;
-		cout <<	endl;
+		cout << endl;
 	} while (userChoice < 1 && userChoice > 4);
 	return userChoice;
 }
@@ -285,25 +285,25 @@ int Game::MainMenu() {
 // Preconditions - Pirates loaded
 // Postconditions - Identifies enemy pirate to fight
 void Game::SearchTreasure() {
-    srand(time(NULL));
-    Pirate enemyPirate;
-    Ship enemyShip; 
-    cout << "You scan the horizon for prospective targets..." << endl;
-    enemyPirate = m_allPirates[rand()%MAX_PIRATES];
+	srand(time(NULL));
+	Pirate enemyPirate;
+	Ship enemyShip;
+	cout << "You scan the horizon for prospective targets..." << endl;
+	enemyPirate = m_allPirates[rand() % MAX_PIRATES];
 	enemyShip = m_ships[rand() % MAX_SHIPS];
-    enemyPirate.SetCurShip(enemyShip);
-    cout << "Off in the distance, you see " << enemyPirate.GetName() << " on a " << enemyShip.m_type << "!"<< endl;
-    int choiceTarget = 0;
-    while (choiceTarget != 1 && choiceTarget != 2){
-        cout <<"What would you like to do?" << endl;
-        cout << "1. Attack " << enemyPirate.GetName() << endl;
-        cout << "2. Attempt to Flee from" << enemyPirate.GetName() << endl;
-        cin >> choiceTarget;
-        if (choiceTarget == 1){
-            m_myPirate.Battle(enemyPirate,enemyShip);
-        }
-        else if (choiceTarget == 2) {
-            m_myPirate.Flee(enemyPirate,enemyShip);
-        }
-    }
+	enemyPirate.SetCurShip(enemyShip);
+	cout << "Off in the distance, you see " << enemyPirate.GetName() << " on a " << enemyShip.m_type << "!" << endl;
+	int choiceTarget = 0;
+	while (choiceTarget != 1 && choiceTarget != 2) {
+		cout << "What would you like to do?" << endl;
+		cout << "1. Attack " << enemyPirate.GetName() << endl;
+		cout << "2. Attempt to Flee from " << enemyPirate.GetName() << endl;
+		cin >> choiceTarget;
+		if (choiceTarget == 1) {
+			m_myPirate.Battle(enemyPirate, enemyShip);
+		}
+		else if (choiceTarget == 2) {
+			m_myPirate.Flee(enemyPirate, enemyShip);
+		}
+	}
 }
