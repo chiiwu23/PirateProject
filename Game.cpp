@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <iostream>
 #include <fstream>
+#include <ctime>
 using namespace std;
 
 
@@ -173,12 +174,55 @@ void Game::LoadPirates(){
   //         calling the main menu 
   // Preconditions - Player (Pirate) is placed in game
   // Postconditions - Continually checks to see if player has entered 4 (retires)
-void Game::StartGame() {}
+void Game::StartGame() {
+    srand(time(NULL));
+    int piratesNum = rand() % MAX_PIRATES; //randomized pirates
+    int shipsNum = rand() % MAX_SHIPS; //randomized ships
+    
+    m_myPirate = m_allPirates[piratesNum];
+    Ship ship = m_ships[shipsNum];
+    m_myPirate.SetCurShip(ship);
+    cout << "Congratulations! " << m_myPirate.GetName() << " is now available to plunder!" << endl;
+    cout << m_myPirate.GetName() << " is aboard a " << ship.m_type<< endl;
+    
+
+    cout << "What would you like to do?" << endl;
+    int choice = MainMenu();
+    while (choice != 4) {
+        if (choice == 1){
+            SearchTreasure();
+        }
+        else if (choice == 2){
+            m_myPirate.RepairShip();
+        }
+        else if (choice == 3){
+            m_myPirate.DisplayScore();
+        }
+    }
+    cout << "**************************" << endl;
+    m_myPirate.DisplayScore();
+    cout << "**************************" << endl;
+    cout << m_myPirate.GetName() << " sails off into retirement!"<< endl;
+    cout << "Thanks for playing Pirates!"<< endl;
+}
+
   // Name: MainMenu()
   // Desc - Displays and manages menu. 
   // Preconditions - Player has a Pirate
   // Postconditions - Returns number including exit
-int Game::MainMenu() { return 0; }
+int Game::MainMenu() {
+    int userChoice = 0; 
+    do {
+        cout << "1. Search for Treasure" <<endl;
+        cout << "2. Repair Ship" << endl;
+        cout << "3. See Score" <<endl;
+        cout << "4. Retire" <<endl;
+        cin >> userchoice << endl;
+    }
+    while(userChoice < 1 && userChoice > 4)
+    return userChoice; 
+    }
+
   // Name: SearchTreasure()
   // Desc - Attempts to search for ships and allows user to either battle or attempt to flee
   // Preconditions - Pirates loaded
