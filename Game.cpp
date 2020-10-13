@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <ctime>
+#include <string>
 using namespace std;
 
 
@@ -125,8 +126,9 @@ void Game::LoadShips() {
 		}
 		*/
 		cout << arryCounter << " ships loaded." << endl;
-
+        inputStream.close();
 	}
+
 }
 
 // Name: LoadPirates
@@ -214,8 +216,9 @@ void Game::LoadPirates() {
 		}
 		*/
 		cout << arryCounter << " pirates loaded." << endl;
+        inputStream.close(); //remember to close file
 	}
-	//remember to close file
+	
 }
 
 // Name: StartGame()
@@ -261,6 +264,7 @@ void Game::StartGame() {
 	cout << "**************************" << endl;
 	cout << m_myPirate.GetName() << " sails off into retirement!" << endl;
 	cout << "Thanks for playing Pirates!" << endl;
+
 }
 
 // Name: MainMenu()
