@@ -96,7 +96,13 @@ void Game::LoadShips() {
 				x = 0;
 				if (arryCounter != MAX_SHIPS)
 				{
-					reverse(element.begin(), element.end());
+					string newElement = "";
+					for (int x = element.size() - 1; x > -1; x--)  //Reverse the element
+					{
+						newElement = newElement + element[x];
+
+					}
+					element = newElement;
 					int y = 0;
 					string strBuilder = "";
 					char charElement = element[y];
@@ -106,7 +112,14 @@ void Game::LoadShips() {
 						charElement = element[++y];
 
 					}
-					reverse(strBuilder.begin(), strBuilder.end());
+
+					string newStrBuilder = "";
+					for (int x = strBuilder.size() - 1; x > -1; x--)  //Reverse the string builder
+					{
+						newStrBuilder = newStrBuilder + strBuilder[x];
+
+					}
+					strBuilder = newStrBuilder;
 					type = strBuilder;
 				}
 			}
@@ -187,7 +200,13 @@ void Game::LoadPirates() {
 				x = 0;
 				if (arryCounter != MAX_PIRATES)
 				{
-					reverse(elementPirates.begin(), elementPirates.end());
+					string newElementPirates = "";
+					for (int x = elementPirates.size() - 1; x > -1; x--)  //Reverse the element
+					{
+						newElementPirates = newElementPirates + elementPirates[x];
+
+					}
+					elementPirates = newElementPirates;
 					int y = 0;
 					string strBuilder = "";
 					char charElement = elementPirates[y];
@@ -197,7 +216,13 @@ void Game::LoadPirates() {
 						charElement = elementPirates[++y];
 
 					}
-					reverse(strBuilder.begin(), strBuilder.end());
+					string newStrBuilder = "";
+					for (int x = strBuilder.size() - 1; x > -1; x--)  //Reverse the string builder
+					{
+						newStrBuilder = newStrBuilder + strBuilder[x];
+
+					}
+					strBuilder = newStrBuilder;
 					pirateName = strBuilder;
 				}
 			}
