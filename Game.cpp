@@ -307,16 +307,3 @@ void Game::SearchTreasure() {
         }
     }
 }
-
-//*
-  // Name: RequestShip()
-  // Desc - Requests ship for battle
-  // Preconditions - Pirate has ship for battle
-  // Postconditions - Returns integer of chosen ship for battle
-//void RequestShip(int &choice);
-//*
-
-  // Name: GameTitle()
-  // Desc - Title for Game (Do not edit)
-  // Preconditions - None
-  // Postconditions - None

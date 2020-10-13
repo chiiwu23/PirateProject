@@ -144,7 +144,9 @@ void Pirate::Battle(Pirate enemyPirate, Ship enemyShip) {
 void Pirate::RepairShip() {
 	int damageShip = m_curShip.m_toughness - m_curShip.m_curToughness;
 	m_curShip.m_curToughness = m_curShip.m_toughness;
+	cout << "It takes " << damageShip << " days to fix the ship" << endl;
 	m_pirateDays = m_pirateDays + damageShip;
+	
 }
 
 // Name: Flee(pirate, ship)
