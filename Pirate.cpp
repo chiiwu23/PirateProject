@@ -105,7 +105,7 @@ void Pirate::CalcTreasure(Ship enemyShip) {
 // Postconditions - Either user pirate wins or enemy pirate wins
 
 void Pirate::Battle(Pirate enemyPirate, Ship enemyShip) {
-	if (m_curShip.m_curToughness = 0) {
+	if (m_curShip.m_curToughness == 0) {
 		cout << "Unable to Battle, Ships Toughness is " << m_curShip.m_curToughness << endl;
 	}
 	else {
@@ -113,12 +113,12 @@ void Pirate::Battle(Pirate enemyPirate, Ship enemyShip) {
 		while (m_curShip.m_curToughness >= 1 || enemyShip.m_curToughness >= 1) {
 			//current ship fires 
 			cout << m_pirateName << " fires " << m_curShip.m_cannon << " cannons" << endl;
-			int hitsMade = (m_curShip.m_cannon * m_pirateRating) % 100;
+			int hitsMade = (m_curShip.m_cannon * m_pirateRating) / 100;
 			enemyShip.m_curToughness -= hitsMade;
 			cout << hitsMade << " hit! " << endl;
 			//enemy ship fires 
 			cout << enemyPirate.GetName() << " fires " << enemyShip.m_cannon << " cannons" << endl;
-			int eHitsMade = (enemyShip.m_cannon * enemyPirate.GetRating()) % 100;
+			int eHitsMade = (enemyShip.m_cannon * enemyPirate.GetRating()) / 100;
 			m_curShip.m_curToughness -= eHitsMade;
 			cout << eHitsMade << " hit! " << endl;
 			if (m_curShip.m_curToughness < 1) {
