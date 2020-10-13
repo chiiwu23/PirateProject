@@ -229,7 +229,29 @@ int Game::MainMenu() {
 // Desc - Attempts to search for ships and allows user to either battle or attempt to flee
 // Preconditions - Pirates loaded
 // Postconditions - Identifies enemy pirate to fight
-void Game::SearchTreasure() {}
+void Game::SearchTreasure() {
+    srand(time(NULL));
+    Pirate enemyPirate;
+    Ship enemyShip; 
+    cout << "You scan the horizon for prospective targets..." << endl;
+    enemyPirate = m_allPirates[rand()%MAX_PIRATES];
+    enemyShip = m_ships[rand()%MAX_SHIPS]
+    enemyPirate.SetCurShip(enemyShip);
+    cout << "Off in the distance, you see " << enemyPirate.GetName() << " on a " << enemyShip << "!"<< endl;
+    int choiceTarget = 0;
+    while (choiceTarget != 1 || choiceTarget != 2){
+        cout <<"What would you like to do?" << endl;
+        cout << "1. Attack " << enemyPirate.GetName() << endl;
+        cout << "2. Attempt to Flee from" << enemyPirate.GetName() << endl;
+        cin >> choiceTarget;
+        if (choiceTarget == 1){
+            m_myPirate.Battle(enemyPirate,enemyShip);
+        }
+        else if (choiceTarget == 2) {
+            m_myPirate.Flee(enemyPirate,enemyShip);
+        }
+    }
+}
 
 //*
   // Name: RequestShip()
