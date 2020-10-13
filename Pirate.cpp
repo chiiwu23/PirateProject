@@ -25,6 +25,8 @@ Pirate::Pirate(string name, int rating, string origin, string desc) {
 	m_pirateRating = rating;
 	m_pirateOrigin = origin;
 	m_pirateDesc = desc;
+	m_pirateCargo = 0; //Tons of cargo earned
+	m_pirateDays = 1; //Days elapsed
 }
 
 // Name: GetName()
@@ -75,6 +77,7 @@ string Pirate::GetDesc() {
 // Postconditions - Updates m_curShip
 void Pirate::SetCurShip(Ship curShip) {
 	m_curShip = curShip;
+	
 }
 
 // Name: CalcTreasure
@@ -166,8 +169,13 @@ void Pirate::DisplayScore() {
 	cout << "Name: " << m_pirateName << endl;
 	cout << "Rating: " << m_pirateRating << endl;
 	cout << "Origin: " << m_pirateOrigin << endl;
-	cout << "Desc: " << m_pirateDesc << endl;
+	cout << "Description: " << m_pirateDesc << endl;
 	cout << "Cargo: " << m_pirateCargo << endl;
 	cout << "Days: " << m_pirateDays << endl;
 	cout << "Cargo Per Day: " << m_pirateCargo / m_pirateDays << endl;
+	cout << "Ship Type: " << m_curShip.m_type << endl;
+	cout << "Ship Cannons: " << m_curShip.m_cannon << endl;
+	cout << "Ship Current Toughness: " << m_curShip.m_curToughness << endl;
+	cout << "Ship Max Toughness: " << m_curShip.m_toughness << endl;
+	cout << "Ship Speed: " << m_curShip.m_speed << endl;
 }
